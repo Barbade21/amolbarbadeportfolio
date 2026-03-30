@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amol Barbade - Full Stack Developer | Hire Me</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #3b82f6;
+            --accent: #06b6d4;
+            --bg: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.6);
+            --border: rgba(148, 163, 184, 0.15);
+            --text-1: #f1f5f9;
+            --text-2: #cbd5e1;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text-1);
+            line-height: 1.6;
+        }
+        body::before {
+            content: ''; position: fixed; inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
+            pointer-events: none; z-index: 0;
+        }
+
+        nav {
+            position: sticky; top: 0; background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+            z-index: 1000; padding: 0.75rem 2rem;
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-brand { font-size: 1.1rem; font-weight: 700; color: var(--primary); }
+        .nav-links {
+            display: flex; gap: 1.5rem; list-style: none; font-size: 0.9rem;
+        }
+        .nav-links a { color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        main { position: relative; z-index: 1; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 3rem 2rem; border-top: 1px solid var(--border); }
+
+        /* Hero */
+        .hero { padding: 4rem 2rem 2rem; text-align: center; }
+        .hero-content { max-width: 900px; margin: 0 auto; }
+        .hero-status {
+            display: inline-block; background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3); color: var(--primary);
+            padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; margin-bottom: 1rem;
+        }
+        .hero-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.2; }
+        .hero-title .highlight { color: var(--accent); }
+        .hero-subtitle { font-size: 1rem; color: var(--text-2); margin-bottom: 0.8rem; font-weight: 400; }
+        
+        .hero-meta {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem; margin: 1.5rem 0; max-width: 500px; margin-left: auto; margin-right: auto;
+        }
+        .meta-item { text-align: center; }
+        .meta-number { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+        .meta-label { font-size: 0.75rem; color: var(--text-2); margin-top: 0.2rem; }
+
+        .hero-buttons {
+            display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem; border: none; border-radius: 6px;
+            cursor: pointer; font-weight: 600; text-decoration: none; display: inline-block;
+            transition: all 0.2s; font-size: 0.95rem;
+        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn-secondary { border: 1px solid var(--primary); color: var(--primary); background: transparent; }
+        .btn-secondary:hover { background: rgba(59, 130, 246, 0.1); }
+
+        .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; }
+
+        /* Experience */
+        .experience-grid { display: grid; gap: 1.5rem; }
+        .experience-item {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 8px; padding: 1.5rem; transition: all 0.2s;
+        }
+        .experience-item:hover { border-color: rgba(59, 130, 246, 0.3); }
+        .experience-header {
+            display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .experience-title { font-weight: 700; color: var(--primary); }
+        .experience-company { color: var(--accent); font-weight: 600; }
+        .experience-date { color: var(--text-2); font-size: 0.9rem; }
+        .experience-item ul { margin-left: 1.5rem; margin-top: 0.8rem; color: var(--text-2); font-size: 0.9rem; }
+        .experience-item li { margin-bottom: 0.4rem; }
+
+        /* Skills */
+        .skills-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-category {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 8px; padding: 1.5rem; transition: all 0.2s;
+        }
+        .skill-category:hover { border-color: rgba(59, 130, 246, 0.3); background: rgba(59, 130, 246, 0.05); }
+        .skill-category h3 { font-size: 0.95rem; margin-bottom: 1rem; color: var(--primary); font-weight: 700; }
+        .skill-items { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .skill-tag {
+            background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2);
+            color: var(--primary); padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+        .skill-tag:hover { background: rgba(59, 130, 246, 0.2); }
+
+        /* Projects */
+        .projects-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .project-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 8px; padding: 1.5rem; transition: all 0.2s;
+            display: flex; flex-direction: column;
+        }
+        .project-card:hover { border-color: rgba(59, 130, 246, 0.3); background: rgba(59, 130, 246, 0.05); }
+        .project-role {
+            color: var(--accent); font-size: 0.75rem; font-weight: 600;
+            text-transform: uppercase; margin-bottom: 0.4rem;
+        }
+        .project-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .project-desc { color: var(--text-2); font-size: 0.85rem; margin-bottom: 1rem; flex-grow: 1; line-height: 1.5; }
+        .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .tech-badge {
+            background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2);
+            color: var(--accent); padding: 0.2rem 0.5rem; border-radius: 3px; font-size: 0.7rem;
+        }
+
+        /* Contact */
+        .contact-section { text-align: center; }
+        .contact-info {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin: 1.5rem 0;
+        }
+        .contact-item { display: flex; flex-direction: column; align-items: center; }
+        .contact-label { color: var(--text-2); font-size: 0.75rem; margin-bottom: 0.2rem; }
+        .contact-value {
+            font-weight: 600; color: var(--primary); text-decoration: none; transition: color 0.2s;
+        }
+        .contact-value:hover { color: var(--accent); }
+
+        footer {
+            border-top: 1px solid var(--border); padding: 1.5rem; text-align: center;
+            color: var(--text-2); font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { gap: 1rem; font-size: 0.8rem; }
+            .hero-title { font-size: 1.8rem; }
+            .hero-meta { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+            .section-title { font-size: 1.4rem; }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+            .projects-grid { grid-template-columns: 1fr; }
+            .contact-info { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-brand">Amol Barbade</div>
+            <ul class="nav-links">
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-status">Available for Hire</span>
+                    <h1 class="hero-title">Hi, I'm <span class="highlight">Amol Barbade</span></h1>
+                    <p class="hero-subtitle">Full-Stack .NET Developer | Enterprise Software Architect</p>
+                    <p class="hero-subtitle">5+ years building secure, scalable applications with C#, ASP.NET Core, Angular, SQL Server</p>
+                    
+                    <div class="hero-meta">
+                        <div class="meta-item">
+                            <div class="meta-number">5+</div>
+                            <div class="meta-label">Years Experience</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-number">10+</div>
+                            <div class="meta-label">Projects</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-number">99%</div>
+                            <div class="meta-label">Uptime</div>
+                        </div>
+                    </div>
+
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="mailto:amolbarbade28@gmail.com" class="btn btn-secondary">Get In Touch</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="container">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="experience-grid">
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Software Developer</div>
+                                <div class="experience-company">Stark Technology and Staffing Solutions</div>
+                            </div>
+                            <div class="experience-date">Apr 2024 – Present</div>
+                        </div>
+                        <ul>
+                            <li>Architecting enterprise apps using ASP.NET Core, Web API, and Angular</li>
+                            <li>Building secure RESTful APIs with JWT authentication and RBAC</li>
+                            <li>Performance optimization: 40% reduction in API response times</li>
+                            <li>Leading code reviews and mentoring junior developers</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">IT Engineer</div>
+                                <div class="experience-company">GGP Auto Solutions Private Ltd</div>
+                            </div>
+                            <div class="experience-date">Apr 2022 – Apr 2024</div>
+                        </div>
+                        <ul>
+                            <li>Technical support for Procure-to-Pay ERP for Fortune 500 clients</li>
+                            <li>Managed complex data transactions with 100% data integrity</li>
+                            <li>Created optimized SQL reports for business intelligence</li>
+                            <li>System migrations and upgrades with zero data loss</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">IT Engineer</div>
+                                <div class="experience-company">Techsum Technology Pvt Ltd</div>
+                            </div>
+                            <div class="experience-date">Jan 2020 – Mar 2021</div>
+                        </div>
+                        <ul>
+                            <li>IT infrastructure support and system troubleshooting</li>
+                            <li>Application deployment and configuration management</li>
+                            <li>Quality assurance testing and debugging</li>
+                            <li>End-user support with high first-call resolution</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Backend & Core</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">C#</span><span class="skill-tag">ASP.NET Core</span>
+                            <span class="skill-tag">ASP.NET MVC</span><span class="skill-tag">Web API</span>
+                            <span class="skill-tag">ADO.NET</span><span class="skill-tag">EF Core</span>
+                            <span class="skill-tag">LINQ</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Frontend & UI</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">Angular</span><span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">Bootstrap</span><span class="skill-tag">jQuery</span>
+                            <span class="skill-tag">AJAX</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Database</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">SQL Server</span><span class="skill-tag">Query Opt</span>
+                            <span class="skill-tag">Procedures</span><span class="skill-tag">Indexing</span>
+                            <span class="skill-tag">SSMS</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Security & Auth</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">JWT</span><span class="skill-tag">RBAC</span>
+                            <span class="skill-tag">OAuth 2.0</span><span class="skill-tag">Encryption</span>
+                            <span class="skill-tag">API Security</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>DevOps & Tools</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">Git</span><span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">IIS</span><span class="skill-tag">Postman</span>
+                            <span class="skill-tag">Swagger</span><span class="skill-tag">VS</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Architecture</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">REST APIs</span><span class="skill-tag">SOLID</span>
+                            <span class="skill-tag">Design Pat</span><span class="skill-tag">N-Tier</span>
+                            <span class="skill-tag">Agile</span><span class="skill-tag">TDD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-role">Team Leader</div>
+                        <h3 class="project-title">SEduERP</h3>
+                        <p class="project-desc">Education ERP automating trainer management, sales lifecycle, course administration, and attendance</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">ASP.NET Core</span><span class="tech-badge">Web API</span>
+                            <span class="tech-badge">SQL</span><span class="tech-badge">jQuery</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-role">Team Leader</div>
+                        <h3 class="project-title">SContent Hub</h3>
+                        <p class="project-desc">Enterprise DMS with secure storage, versioning, approval workflows, encryption and audit logging</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">ASP.NET MVC</span><span class="tech-badge">SQL</span>
+                            <span class="tech-badge">AJAX</span><span class="tech-badge">Security</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-role">Team Leader</div>
+                        <h3 class="project-title">Stark Society Hub</h3>
+                        <p class="project-desc">Society management platform automating billing, complaints, visitor logs with PDF generation</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">ASP.NET MVC</span><span class="tech-badge">Web API</span>
+                            <span class="tech-badge">jQuery</span><span class="tech-badge">PDF</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-role">Team Member</div>
+                        <h3 class="project-title">HRMS</h3>
+                        <p class="project-desc">HR system automating recruitment, onboarding, payroll, appraisals, and leave management</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">ASP.NET Core</span><span class="tech-badge">Angular</span>
+                            <span class="tech-badge">Web API</span><span class="tech-badge">JWT</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-role">Team Member</div>
+                        <h3 class="project-title">STickVibe</h3>
+                        <p class="project-desc">IT support ticket system with real-time tracking, smart prioritization and agent assignment</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">ASP.NET MVC</span><span class="tech-badge">EF</span>
+                            <span class="tech-badge">LINQ</span><span class="tech-badge">AJAX</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-role">Team Member</div>
+                        <h3 class="project-title">STProcura</h3>
+                        <p class="project-desc">P2P ERP with requisition, PO, goods receipt, invoicing, vendor analytics and financial reconciliation</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">ASP.NET Core</span><span class="tech-badge">Web API</span>
+                            <span class="tech-badge">Angular</span><span class="tech-badge">IIS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container" style="text-align: center;">
+                <h2 class="section-title">Let's Connect</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-label">Email</div>
+                        <a href="mailto:amolbarbade28@gmail.com" class="contact-value">amolbarbade28@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">Phone</div>
+                        <a href="tel:+918805635242" class="contact-value">+91-8805635242</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">LinkedIn</div>
+                        <a href="https://linkedin.com" class="contact-value">linkedin.com/in/amol-barbade-714a383b5</a>
+                    </div>
+                </div>
+                <a href="mailto:amolbarbade28@gmail.com" class="btn btn-primary">Send Email</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Amol Barbade. | Full Stack Developer</p>
+    </footer>
+</body>
+</html>
